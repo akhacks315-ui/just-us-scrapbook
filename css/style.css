@@ -1,0 +1,10 @@
+@import url("../style.css");
+.private-link{color:#aaa!important}.private-link:before{content:"♡ ";color:var(--wine)}
+.private-pill{margin-left:8px;text-decoration:none;display:inline-block}
+.private-bridge{padding-top:20px;padding-bottom:40px}
+.private-bridge-inner{border:1px solid #272624;padding:70px 7vw;background:radial-gradient(circle at 80% 30%,#1a0e12,#0b0b0b 55%);position:relative;overflow:hidden}
+.private-bridge-inner:after{content:"♡";position:absolute;right:7%;top:18%;font:120px/1 "Playfair Display";color:rgba(255,255,255,.025)}
+.private-bridge h2{font-size:clamp(48px,7vw,88px);line-height:.95;letter-spacing:-.06em;font-weight:400;margin:22px 0}
+.private-bridge p:not(.micro){color:#777;line-height:1.8;max-width:520px}
+.final-private{display:inline-block;margin-top:24px;color:#777;font:10px "DM Mono";letter-spacing:.15em;text-transform:uppercase}.final-private:hover{color:#eee}
+@media(max-width:700px){.private-pill{margin-left:0}.private-bridge-inner{padding:55px 20px}}
