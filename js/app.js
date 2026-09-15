@@ -84,15 +84,18 @@ document.addEventListener("mousemove",e=>{const c=$(".cursor-glow");if(c){c.styl
 
 const music=$("#music"),mb=$("#musicBtn");
 if(music){
-  music.src="assets/audio/background.mp3";
+  music.src=new URL("assets/audio/background.mp3",document.baseURI).href;
   music.loop=true;
   music.preload="auto";
   music.volume=0.28;
+  music.addEventListener("error",()=>{if(mb) mb.textContent="♪ error";console.error("Background music failed to load",music.error)});
 }
 if(mb) mb.onclick=()=>{
   if(!music) return;
   if(music.paused){
-    music.play().then(()=>{mb.textContent="♪ playing"}).catch(()=>{mb.textContent="♪ play"});
+    mb.textContent="♪ loading";
+    music.load();
+    music.play().then(()=>{mb.textContent="♪ playing"}).catch(err=>{mb.textContent="♪ play";console.error("Background music could not play",err)});
   }else{
     music.pause();
     mb.textContent="♪ music";
