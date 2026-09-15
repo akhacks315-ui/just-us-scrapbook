@@ -83,7 +83,21 @@ if(secretBtn) secretBtn.onclick=()=>{clicks++;if(clicks<3)secretBtn.textContent=
 document.addEventListener("mousemove",e=>{const c=$(".cursor-glow");if(c){c.style.left=e.clientX+"px";c.style.top=e.clientY+"px"}});
 
 const music=$("#music"),mb=$("#musicBtn");
-if(mb) mb.onclick=()=>{if(!music || !music.src){alert("Add your song to assets/audio and set music.src in js/app.js.");return}music.paused?music.play():music.pause()};
+if(music){
+  music.src="assets/audio/background.mp3";
+  music.loop=true;
+  music.preload="auto";
+  music.volume=0.28;
+}
+if(mb) mb.onclick=()=>{
+  if(!music) return;
+  if(music.paused){
+    music.play().then(()=>{mb.textContent="♪ playing"}).catch(()=>{mb.textContent="♪ play"});
+  }else{
+    music.pause();
+    mb.textContent="♪ music";
+  }
+};
 
 function init(){
   try{renderTimeline()}catch(e){console.error("timeline",e)}
