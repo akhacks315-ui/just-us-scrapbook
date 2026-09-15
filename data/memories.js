@@ -1,13 +1,9 @@
-// PERSONAL CONTENT FILE — edit this file to add your memories.
-// Photos: assets/images/   Videos: assets/videos/   Music: assets/audio/
+// PUBLIC WEBSITE CONTENT — keep private photos/videos out of this file.
+// Private photos, videos and other personal material belong in the private Notion space.
 
-const memories = [
-  {src:"assets/images/first-date-mantri-square.jpg",title:"Our first date",date:"17 FEB 2026",description:"The afternoon we finally went on our first date at Mantri Square Mall."},
-];
+const memories = [];
 
-const videos = [
-  // {src:"assets/videos/our-moment.mp4",title:"A little moment",date:"2026",description:"One I could replay forever."},
-];
+const videos = [];
 
 const timeline = [
  {date:"17 FEB 2026 · 12:00 AM",title:"The moment I asked you to be mine.",text:"At midnight, I proposed to you over chat. And somehow, that little moment became the beginning of our us."},
