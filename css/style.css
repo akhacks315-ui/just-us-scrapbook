@@ -74,3 +74,20 @@ body.ending-open{overflow:hidden}
 @keyframes endingRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){.ending-inner{padding:30px 8px}.ending-inner>p:not(.micro){font-size:12px}.ending-inner strong{font-size:17px}.ending-curtain:before{width:110vw}.ending-curtain:after{width:75vw}}
 @media(prefers-reduced-motion:reduce){.ending-inner,.ending-star{animation:none!important}.ending-curtain{transition:none}}
+
+
+/* Birthday countdown — a quiet December marker for Neha. */
+.birthday-section{max-width:100%;padding-top:115px;padding-bottom:115px}
+.birthday-inner{max-width:920px;margin:auto;text-align:center;border:1px solid #34242a;padding:75px 6vw;background:radial-gradient(circle at 50% 0%,rgba(83,30,46,.35),transparent 65%),linear-gradient(145deg,#100c0e,#090909);position:relative;overflow:hidden}
+.birthday-inner:before,.birthday-inner:after{content:"✦";position:absolute;color:rgba(193,117,137,.16);font-size:26px}
+.birthday-inner:before{top:28px;left:34px}.birthday-inner:after{right:34px;bottom:28px}
+.birthday-inner h2{font-size:clamp(48px,7vw,86px);line-height:1;letter-spacing:-.06em;font-weight:400;margin:24px 0}
+.birthday-inner h2 i{font-family:"Playfair Display";color:#eee}
+.birthday-copy{max-width:510px;margin:0 auto;color:#888;font-size:13px;line-height:1.9}
+.birthday-countdown{display:flex;justify-content:center;gap:clamp(18px,5vw,58px);margin:52px auto 0}
+.birthday-countdown>div{min-width:72px}
+.birthday-countdown strong{display:block;font-size:clamp(42px,7vw,76px);font-weight:300;line-height:1;color:#e8e0dc;font-variant-numeric:tabular-nums}
+.birthday-countdown span{display:block;margin-top:12px;color:#6d6262;font:9px "DM Mono";letter-spacing:.16em}
+.birthday-status{margin:38px 0 0;color:#a36c7b;font:italic 16px "Playfair Display"}
+@media(max-width:600px){.birthday-section{padding:85px 20px}.birthday-inner{padding:58px 15px}.birthday-countdown{gap:12px}.birthday-countdown>div{min-width:55px}.birthday-countdown strong{font-size:38px}.birthday-countdown span{font-size:8px}.birthday-inner:before{left:16px;top:16px}.birthday-inner:after{right:16px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.birthday-inner:before,.birthday-inner:after{animation:none}}
