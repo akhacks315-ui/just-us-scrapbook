@@ -19,3 +19,33 @@
 @media(max-width:850px){.desktop-nav{display:none}.menu-btn{display:block}.mobile-menu{position:fixed;inset:0;z-index:110;background:rgba(8,7,8,.98);display:flex;flex-direction:column;justify-content:center;padding:30px 12vw;gap:23px;transform:translateX(100%);transition:.45s}.mobile-menu.open{transform:none}.mobile-menu a{font:clamp(25px,7vw,46px) "Playfair Display"}.mobile-close{position:absolute;top:22px;right:22px;background:none;border:0;color:#eee;font-size:34px}.spotify-playlists{grid-template-columns:1fr}.things{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.nav{padding:0 20px;height:70px}.hero{min-height:620px}.hero-orbit{width:125vw}.orbit-two{width:85vw}.hero h1{margin:32px 0 38px}.hero-corner{left:20px}.hero-corner.right{right:20px}.scroll{bottom:22px}.section,.statement{padding:100px 20px}.statement{min-height:75vh}.statement h2{font-size:46px}.heading{margin-bottom:50px}.heading h2{font-size:50px}.section-intro{font-size:13px;margin-top:22px}.chapter-break{min-height:75vh}.chapter-break h2{font-size:54px}.chapter-stats{gap:18px;flex-wrap:wrap}.timeline{border-left:1px solid var(--line);margin-left:10px}.timeline:before{display:none}.timeline-item,.timeline-item:nth-child(even){width:auto;margin-left:0;padding:0 0 72px 42px}.timeline-item:before,.timeline-item:nth-child(even):before{left:-4px;right:auto;top:4px}.timeline h3{font-size:25px}.cards{grid-template-columns:1fr;gap:10px}.card{min-height:205px;padding:30px}.card h3{font-size:27px;margin-top:38px}.gallery{grid-template-columns:1fr 1fr;gap:6px}.photo,.photo:nth-child(n){grid-column:span 1;min-height:230px}.photo:nth-child(3n){grid-column:span 2}.photo img{min-height:230px}.photo-info{opacity:1;padding:45px 10px 10px}.videos{grid-template-columns:1fr}.things{grid-template-columns:1fr}.secret-box{padding:55px 20px}.counter{padding:55px 15px}.cursor-glow{display:none}.private-pill{margin-left:0}.private-bridge-inner{padding:55px 20px}.private-teasers{display:flex;gap:36px;flex-wrap:wrap;margin:38px 0 4px;padding-top:20px;border-top:1px solid var(--line);max-width:760px}.private-teasers span{font:9px "DM Mono";letter-spacing:.12em;text-transform:uppercase;color:#5f5957}.private-teasers b{display:block;color:#aaa;font-size:15px;margin-bottom:7px}.private-bridge-inner:after{font-size:90px}.footer{flex-direction:column;text-align:center}.spotify-card iframe{height:352px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+
+/* Cinematic polish: quieter transitions between chapters and a warmer ending. */
+.section:not(.chapter-break):not(.private-bridge):not(.secret)::before{content:"";position:absolute;top:0;left:9vw;right:9vw;height:1px;background:linear-gradient(90deg,transparent,rgba(169,71,94,.2),transparent);pointer-events:none}
+.hero-orbit{translate:var(--orbit-x,0) var(--orbit-y,0);will-change:translate}
+.hero-copy .micro{animation:softAppear 1.2s .15s both}
+.hero-copy h1{animation:heroTitle 1.4s .25s both}
+.hero-copy .sub{animation:softAppear 1.3s .55s both}
+.hero-buttons{animation:softAppear 1.2s .8s both}
+.timeline-item{transition:transform .6s ease}
+.timeline-item:hover{transform:translateY(-4px)}
+.thing{position:relative;overflow:hidden}
+.thing:after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--wine2);transition:width .5s}
+.thing:hover:after{width:100%}
+.final{isolation:isolate}
+.final:before,.final:after{z-index:-1;animation:floatHeart 9s ease-in-out infinite}
+.final:after{animation-delay:-4.5s}
+.final-heart{animation:heartBeat 2.8s ease-in-out infinite;text-shadow:0 0 35px rgba(169,71,94,.28)}
+.final-copy:after{content:"";display:block;width:1px;height:54px;margin:34px auto 0;background:linear-gradient(transparent,var(--wine2),transparent);opacity:.65}
+.final-private{transition:color .3s,letter-spacing .3s}
+.final-private:hover{letter-spacing:.22em}
+.ghost{padding:12px 18px;border:1px solid transparent;border-radius:99px;transition:.3s}
+.ghost:hover{border-color:#393034;background:rgba(255,255,255,.025)}
+.reveal.visible{will-change:auto}
+@keyframes softAppear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroTitle{from{opacity:0;transform:translateY(24px) scale(.985);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}8%{transform:scale(1.12)}16%{transform:scale(1)}24%{transform:scale(1.07)}32%{transform:scale(1)}}
+@keyframes floatHeart{0%,100%{translate:0 0}50%{translate:0 -18px}}
+@media(max-width:700px){.section:not(.chapter-break):not(.private-bridge):not(.secret)::before{left:20px;right:20px}.final{min-height:90svh}.final-copy>p:not(.micro){font-size:14px}.final:before{left:-20%;top:12%}.final:after{right:-20%;bottom:12%}}
+@media(prefers-reduced-motion:reduce){.hero-copy .micro,.hero-copy h1,.hero-copy .sub,.hero-buttons,.final:before,.final:after,.final-heart{animation:none!important}.hero-orbit{translate:0 0}}
