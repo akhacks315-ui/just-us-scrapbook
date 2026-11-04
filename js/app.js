@@ -18,7 +18,33 @@ function setupMusic(){const music=$("#music"),mb=$("#musicBtn");if(!music)return
 function setupMenu(){const menu=$("#mobileMenu"),open=$("#menuBtn"),closeBtn=$("#mobileClose");if(!menu||!open)return;const toggle=v=>{menu.classList.toggle("open",v);menu.setAttribute("aria-hidden",String(!v))};open.onclick=()=>toggle(true);if(closeBtn)closeBtn.onclick=()=>toggle(false);menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>toggle(false)))}
 function setupProgress(){const bar=$("#progress");if(!bar)return;const update=()=>{const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+"%"};addEventListener("scroll",update,{passive:true});update()}
 
-function setupEnding(){const curtain=$("#ending"),open=$("#openEnding"),close=$("#closeEnding");if(!curtain||!open||!close)return;const set=v=>{curtain.classList.toggle("open",v);curtain.setAttribute("aria-hidden",String(!v));document.body.classList.toggle("ending-open",v)};open.onclick=()=>set(true);close.onclick=()=>set(false);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&curtain.classList.contains("open"))set(false)})}
+
+function setupBirthdayCountdown(){
+ const target=new Date("2026-12-03T00:00:00+05:30").getTime();
+ const ids={days:$("#birthdayDays"),hours:$("#birthdayHours"),minutes:$("#birthdayMinutes"),seconds:$("#birthdaySeconds")};
+ const status=$("#birthdayStatus");
+ if(!ids.days||!ids.hours||!ids.minutes||!ids.seconds)return;
+ const pad=n=>String(n).padStart(2,"0");
+ const update=()=>{
+  const now=Date.now(),remaining=target-now;
+  if(remaining<=0){
+   Object.values(ids).forEach(el=>el.textContent="00");
+   if(status)status.textContent=now<target+86400000?"Today is your day. Happy birthday, my moon. ♡":"03 December — still celebrating you.";
+   return;
+  }
+  const days=Math.floor(remaining/86400000);
+  const hours=Math.floor(remaining%86400000/3600000);
+  const minutes=Math.floor(remaining%3600000/60000);
+  const seconds=Math.floor(remaining%60000/1000);
+  ids.days.textContent=String(days);
+  ids.hours.textContent=pad(hours);
+  ids.minutes.textContent=pad(minutes);
+  ids.seconds.textContent=pad(seconds);
+ };
+ update();
+ setInterval(update,1000);
+}
+\nfunction setupEnding(){const curtain=$("#ending"),open=$("#openEnding"),close=$("#closeEnding");if(!curtain||!open||!close)return;const set=v=>{curtain.classList.toggle("open",v);curtain.setAttribute("aria-hidden",String(!v));document.body.classList.toggle("ending-open",v)};open.onclick=()=>set(true);close.onclick=()=>set(false);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&curtain.classList.contains("open"))set(false)})}
 function setupHeroDrift(){if(matchMedia("(prefers-reduced-motion: reduce)").matches||matchMedia("(pointer: coarse)").matches)return;const hero=$(".hero");if(!hero)return;hero.addEventListener("pointermove",e=>{const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;hero.style.setProperty("--orbit-x",(x*-13)+"px");hero.style.setProperty("--orbit-y",(y*-13)+"px")});hero.addEventListener("pointerleave",()=>{hero.style.setProperty("--orbit-x","0px");hero.style.setProperty("--orbit-y","0px")})}
-function init(){document.documentElement.classList.add("js-ready");try{renderTimeline()}catch(e){console.error("timeline",e)}try{gallery()}catch(e){console.error("gallery",e)}try{vids()}catch(e){console.error("videos",e)}try{cards()}catch(e){console.error("cards",e)}try{renderThings()}catch(e){console.error("things",e)}try{days()}catch(e){console.error("days",e)}try{observe();setTimeout(()=>document.querySelectorAll(".reveal").forEach(x=>x.classList.add("visible")),1800)}catch(e){console.error("observe",e);document.querySelectorAll(".reveal").forEach(x=>x.classList.add("visible"))}try{setupMusic()}catch(e){console.error("music",e)}try{setupMenu()}catch(e){console.error("menu",e)}try{setupProgress()}catch(e){console.error("progress",e)}try{setupHeroDrift()}catch(e){console.error("hero drift",e)}try{setupEnding()}catch(e){console.error("ending",e)}}
+function init(){document.documentElement.classList.add("js-ready");try{renderTimeline()}catch(e){console.error("timeline",e)}try{gallery()}catch(e){console.error("gallery",e)}try{vids()}catch(e){console.error("videos",e)}try{cards()}catch(e){console.error("cards",e)}try{renderThings()}catch(e){console.error("things",e)}try{days()}catch(e){console.error("days",e)}try{observe();setTimeout(()=>document.querySelectorAll(".reveal").forEach(x=>x.classList.add("visible")),1800)}catch(e){console.error("observe",e);document.querySelectorAll(".reveal").forEach(x=>x.classList.add("visible"))}try{setupMusic()}catch(e){console.error("music",e)}try{setupMenu()}catch(e){console.error("menu",e)}try{setupProgress()}catch(e){console.error("progress",e)}try{setupHeroDrift()}catch(e){console.error("hero drift",e)}try{setupEnding()}catch(e){console.error("ending",e)}try{setupBirthdayCountdown()}catch(e){console.error("birthday countdown",e)}}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
